@@ -74,6 +74,7 @@ int main()
             Call the method on the t1000 calculator instance and print the results.
 
     */
+    bool evenResult = t1000.isEven(4);
 
 
 
