@@ -75,6 +75,10 @@ int main()
 
     */
     bool evenResult = t1000.isEven(4);
+    if (evenResult)
+        std::cout << "The number is even.\n";
+    else
+        std::cout << "The number is odd.\n";
 
 
 
