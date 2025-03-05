@@ -52,10 +52,22 @@ void SayHi(std::string whatToSay)
     Console::WriteLine(whatToSay, ConsoleColor::Green);
 }
 
+void FillGrades(std::vector<float>& course,float& minGrade, float& maxGrade)
+{
+    minGrade = 101;
+    maxGrade = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        course.push_back( rand() % 10001 / 100.0f);
+        if (course[i] < minGrade) minGrade = course[i];
+        if (course[i] > maxGrade) maxGrade = course[i];
+    }
+}
+
 int main()
 {
     std::vector<int> numbers;
-    for (size_t i = 0; i < 1000000; i++)
+    for (size_t i = 0; i < 10; i++)
     {
         numbers.push_back(rand());
     }
@@ -92,7 +104,16 @@ int main()
 
     */
     std::vector<float> grades;
+    float min, max;
+    FillGrades(grades, min, max);
+    Console::WriteLine("\n\n---PG2 2503---", ConsoleColor::Yellow);
+    for (int i = 0; i < grades.size(); i++)
+    {
+        std::cout << grades[i] << "\n";
+    }
+    std::cout << "Min Grade: " << min << "\nMax grade: " << max << "\n\n";
 
+    // modify FillGrades to return the min and max grades through parameters
 
 
     /*
