@@ -63,6 +63,15 @@ void FillGrades(std::vector<float>& course,float& minGrade, float& maxGrade)
         if (course[i] > maxGrade) maxGrade = course[i];
     }
 }
+void PrintGrades(const std::vector<float>& course, const float& minGrade,const float& maxGrade)
+{
+    Console::WriteLine("\n\n---PG2 2503---", ConsoleColor::Yellow);
+    for (int i = 0; i < course.size(); i++)
+    {
+        std::cout << course[i] << "\n";
+    }
+    std::cout << "Min Grade: " << minGrade << "\nMax grade: " << maxGrade << "\n\n";
+}
 
 int main()
 {
@@ -106,12 +115,7 @@ int main()
     std::vector<float> grades;
     float min, max;
     FillGrades(grades, min, max);
-    Console::WriteLine("\n\n---PG2 2503---", ConsoleColor::Yellow);
-    for (int i = 0; i < grades.size(); i++)
-    {
-        std::cout << grades[i] << "\n";
-    }
-    std::cout << "Min Grade: " << min << "\nMax grade: " << max << "\n\n";
+    PrintGrades(grades, min, max);
 
     // modify FillGrades to return the min and max grades through parameters
 
