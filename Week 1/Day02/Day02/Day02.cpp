@@ -31,6 +31,9 @@ void print(const std::vector<int>& scores)
 
 void printInfo(const std::vector<int>& scores)
 {
+    //size() - # of items in the vector
+    //capacity() - size of the internal array
+    //size() is ALWAYS <= capacity()
     std::cout << "size: " << scores.size() << "\tcapacity: " << scores.capacity() << "\n";
 }
 
@@ -129,11 +132,15 @@ int main()
         This is the way you pass by reference and prevent the method from changing the variable.
     */
     std::vector<int> highScores;
-    for (int i = 0; i < 10; ++i)
+    highScores.reserve(10);//sets the capacity to 10
+    printInfo(highScores);//size: 0  capacity: 0
+    for (int i = 0; i < 12; ++i)
     {
         highScores.push_back(rand() % 5000);
         printInfo(highScores);//size: ?  capacity: ?
     }
+    highScores.shrink_to_fit();
+    printInfo(highScores);//size: ?  capacity: ?
     float avg = average(highScores);
 
 
@@ -167,6 +174,37 @@ int main()
     print(highScores);
 
     //erase all scores < 2500
+    //for (int i = 0; i < highScores.size(); i++)
+    //{
+    //    if (highScores[i] < 2500)
+    //    {
+    //        highScores.erase(highScores.begin() + i);
+    //        i--;
+    //    }
+    //}
+    //for (int i = 0; i < highScores.size(); )
+    //{
+    //    if (highScores[i] < 2500)
+    //    {
+    //        highScores.erase(highScores.begin() + i);
+    //    }
+    //    else i++;
+    //}
+    //for (int i = highScores.size() - 1; i >= 0; i--)
+    //{
+    //    if (highScores[i] < 2500)
+    //    {
+    //        highScores.erase(highScores.begin() + i);
+    //    }
+    //}
+    for (auto iter = highScores.begin(); iter != highScores.end();)
+    {
+        if (*iter < 2500)
+        {
+            iter = highScores.erase(iter);
+        }
+        else iter++;
+    }
 
     print(highScores);
 
