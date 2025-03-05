@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include <Console.h>
 
 bool postFix(std::string& hero)
 {
@@ -33,8 +34,38 @@ void printInfo(const std::vector<int>& scores)
     std::cout << "size: " << scores.size() << "\tcapacity: " << scores.capacity() << "\n";
 }
 
+//& - reference variable
+//pass by reference (ALIAS) - prevents a copy
+//when to use? if the parameter type is a class
+void PrintMe(std::vector<int>& numies)
+{
+    for (int i = 0; i < numies.size(); i++)
+    {
+        std::cout << numies[i] << "\n";
+    }
+}
+
+//pass by value (COPY)
+//whatToSay gets its value COPIED to it from another location
+void SayHi(std::string whatToSay)
+{
+    Console::WriteLine(whatToSay, ConsoleColor::Green);
+}
+
 int main()
 {
+    std::vector<int> numbers;
+    for (size_t i = 0; i < 1000000; i++)
+    {
+        numbers.push_back(rand());
+    }
+
+    std::vector<int>numbers2 = numbers;//copy
+    std::vector<int>& nums = numbers;//no copy
+    PrintMe(nums);//giving my variable to a different scope
+    SayHi("Hello Gotham");
+    std::string city = "Central City";
+    SayHi(city);
     /*
         ╔══════════════════════════════╗
         ║Parameters: Pass by Reference.║
@@ -56,6 +87,8 @@ int main()
             Write a method to fill the vector of floats with grades.
             1) pass it in by reference
             2) add 10 grades to the vector
+            3) call the method
+            4) after calling, print the vector
 
     */
     std::vector<float> grades;
