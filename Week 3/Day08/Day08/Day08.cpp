@@ -6,10 +6,21 @@
 #include "Inheritance.h"
 #include "Polymorphism.h"
 #include "Car.h"
+#include "Player.h"
+#include <Console.h>
 
 
+void Counter()
+{
+	static int i = 0;
+	std::cout << i << " ";
+	i++;
+}
 int main()
 {
+	for (int i = 0; i < 10; i++)
+		Counter();
+	std::cout << "\n";
 	/*
 		╔═══════════════╗
 		║  Inheritance  ║
@@ -39,6 +50,14 @@ int main()
 			Lecture Code: add a FlyingCar class that derives from Car
 
 	*/
+
+	int midX = Console::GetWindowWidth() / 2;
+	int midY = Console::GetWindowHeight() / 2;
+	//compile-time polymorphism
+	Player p1(midX, midY, 0, 0, 3, 90);
+	Player P2(midX, midY);
+
+	//GameObject gObj(0, 0, 0);
 
 
 
