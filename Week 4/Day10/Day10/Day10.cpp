@@ -51,6 +51,28 @@ int main()
         Lecture code: set a filePath variable, open an output file, write some csv data to it
     */
 
+    std::string fileName = "2503.csv";
+    std::string path = "C:/temp/2503/";
+    std::string finalPath = path + fileName;
+
+    char delimiter = '$';
+    //1) open the file
+    std::ofstream outFile(finalPath);
+    if (outFile.is_open())
+    {
+        //2) write to the file
+        //  <<  insertion operator
+        outFile << "Aquaman literally stinks.";
+        outFile << delimiter << 13.7;
+        outFile << delimiter << true;
+        outFile << delimiter << 7;
+        outFile << delimiter << "Batman RULES!";
+    }
+    else
+        std::cout << finalPath << " could not be opened.\n";
+
+    //3) close the file
+    outFile.close();
 
     /*
 
@@ -64,7 +86,59 @@ int main()
 
         Lecture code: using the filePath variable, open an input file, use getline to read a line, print the line
     */
+    //1) open the file
+    std::ifstream inFile(finalPath);
+    if (inFile.is_open())
+    {
+        //2) read the file
 
+        std::string input;
+        //reads until the \n OR until the end of the file
+        std::getline(inFile, input);
+        //std::cout << input << "\n";//debug print
+
+        //parse the data out of the string
+        //use getline and stringstream
+        std::stringstream inputStream(input);
+        std::string data;
+
+        std::getline(inputStream, data, delimiter);
+        std::cout << data << "\n";
+
+        //read the double
+        std::getline(inputStream, data, delimiter);
+        double dData = std::stod(data);
+        std::cout << dData << "\n";
+
+        //read the bool
+        std::getline(inputStream, data, delimiter);
+        //use a try-catch block to handle exceptions
+        try
+        {
+            //the code that might throw an exception goes inside the try block
+            bool bData = std::stoi(data);
+            std::cout << bData << "\n";
+        }
+        catch (const std::exception&)
+        {
+            //the code to HANDLE the exception goes into the catch block
+            std::cout << data << " is not the right format. Expected an integer.\n";
+        }
+
+        //read the int
+        std::getline(inputStream, data, delimiter);
+        int iData = std::stoi(data);
+        std::cout << iData << "\n";
+
+        //read the string
+        std::getline(inputStream, data, delimiter);
+        std::cout << data << "\n";
+    }
+    else
+        std::cout << finalPath << " could not be opened.\n";
+
+    //3) close the file
+    inFile.close();
 
     /*
 
@@ -82,6 +156,18 @@ int main()
 
     */
 
+    std::ifstream inFile2(finalPath);
+
+    std::string line;
+    //while (std::getline(inFile2, line))
+    //{
+
+    //}
+    while (!inFile2.eof())
+    {
+
+    }
+    inFile2.close();
 
 
 
